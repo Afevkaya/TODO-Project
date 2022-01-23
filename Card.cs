@@ -2,6 +2,7 @@ using System;
 
 namespace ProjectTwo
 {
+    // Kartın özelliklerinin tanımlandığı sınıf
     public class Card 
     {
         public string Name { get; set; }

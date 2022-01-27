@@ -18,23 +18,41 @@ namespace ProjectTwo // Note: actual namespace depends on the project name.
         static void ListCards(Board board){
             if (board.TODO != null)
             {
+                Console.WriteLine("TODO Line");
+                Console.WriteLine("********************");
                 foreach (var todo in board.TODO)
                 {
-                    Console.WriteLine(todo.Name + " "+todo.);
+                    Console.WriteLine("Başlık: "+todo.Name);
+                    Console.WriteLine("İçerik: "+todo.Content);
+                    Console.WriteLine("Atanana Kişi: "+todo.UserId);
+                    Console.WriteLine("Büyüklük: "+todo.Size);
+                    Console.WriteLine("-");
                 }
             }
             if (board.INPROGRESS != null)
             {
-                foreach (var inprogress in board.INPROGRESS)
+                Console.WriteLine("IN PROGRESS Line");
+                Console.WriteLine("********************");
+                foreach (var todo in board.TODO)
                 {
-                    Console.WriteLine(inprogress.Name);
+                    Console.WriteLine("Başlık: "+todo.Name);
+                    Console.WriteLine("İçerik: "+todo.Content);
+                    Console.WriteLine("Atanana Kişi: "+todo.UserId);
+                    Console.WriteLine("Büyüklük: "+todo.Size);
+                    Console.WriteLine("-");
                 }
             }
             if (board.DONE != null)
             {
-                foreach (var done in board.DONE)
+                Console.WriteLine("DONE Line");
+                Console.WriteLine("********************");
+                foreach (var todo in board.TODO)
                 {
-                    Console.WriteLine(done.Name);
+                    Console.WriteLine("Başlık: "+todo.Name);
+                    Console.WriteLine("İçerik: "+todo.Content);
+                    Console.WriteLine("Atanana Kişi: "+todo.UserId);
+                    Console.WriteLine("Büyüklük: "+todo.Size);
+                    Console.WriteLine("-");
                 }
             }
         }
@@ -71,11 +89,13 @@ namespace ProjectTwo // Note: actual namespace depends on the project name.
             }
             card.UserId = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Lutfen size seçiniz: XS(1) S(2) M(3) L(4) XL(5): ");
+            Console.WriteLine("Lutfen size seçiniz -> XS(1), S(2), M(3), L(4)i XL(5): ");
             card.Size = Convert.ToInt32(Console.ReadLine());
 
             board.TODO.Add(card);
 
         }
+
+        
     }
 }

@@ -9,7 +9,6 @@ namespace ProjectTwo // Note: actual namespace depends on the project name.
         static void Main(string[] args)
         {
             Board board = new Board();
-            AddCard(board);
             ListCards(board);
         }
 

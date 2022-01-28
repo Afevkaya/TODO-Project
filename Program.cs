@@ -7,7 +7,6 @@ namespace ProjectTwo // Note: actual namespace depends on the project name.
     class Program
     {
         
-        
         static void Main(string[] args)
         {
             Board board = new Board();
@@ -34,11 +33,11 @@ namespace ProjectTwo // Note: actual namespace depends on the project name.
             selection = Convert.ToInt32(Console.ReadLine());
             if (selection == 1)
             {
-                AddCard(board);
+                ListCards(board);
             }
             else if(selection == 2)
             {
-                ListCards(board);
+                AddCard(board);
             }
             else if(selection == 3)
             {
@@ -96,6 +95,7 @@ namespace ProjectTwo // Note: actual namespace depends on the project name.
                     Console.WriteLine("-");
                 }
             }
+            Menu(board);
         }
 
         //Kart Ekleme
@@ -134,6 +134,7 @@ namespace ProjectTwo // Note: actual namespace depends on the project name.
             card.Size = Convert.ToInt32(Console.ReadLine());
 
             board.TODO.Add(card);
+            ListCards(board);
 
         }
 
@@ -165,46 +166,65 @@ namespace ProjectTwo // Note: actual namespace depends on the project name.
                 {
                     RemoveMessage(board);
                 }
+
+                ListCards(board);
                 
             }
 
-            if(board.INPROGRESS != null)
+            if(card == null)
             {
-                if (card != null)
+                if (board.INPROGRESS != null)
                 {
                     foreach (var inprogress in board.INPROGRESS)
                     {
                         if (cardName == inprogress.Name)
                         {
                             card = inprogress;
-                            board.INPROGRESS.Remove(card);
                             break;
                         }
+                        
+                    }
+                    if (card != null)
+                    {
+                        board.INPROGRESS.Remove(card);
+                    }
+                    else
+                    {
                         RemoveMessage(board);
                     }
+                    ListCards(board);
                 }
             }
-            if (board.DONE != null)
+            if (card == null)
             {
-                if (card != null)
+                if (board.DONE != null)
                 {
                     foreach (var done in board.DONE)
                     {
                         if (cardName == done.Name)
                         {
                             card = done;
-                            board.DONE.Remove(card);
                             break;
                         }
                     }
-                    RemoveMessage(board);
+                    if (card != null)
+                    {
+                        board.DONE.Remove(card);
+                    }
+                    else
+                    {
+                        RemoveMessage(board);
+                    }
+                    ListCards(board);
                 }
+                
 
             }
                 
             
         }
 
+        //Kart Taşıma
         static void Transport(Board board){
             string cardName = "";
             string line = "TODO";
@@ -276,14 +296,17 @@ namespace ProjectTwo // Note: actual namespace depends on the project name.
                 if (selection == 1)
                 {
                     board.TODO.Add(card);
+                    ListCards(board);
                 }
                 else if(selection == 2)
                 {
                     board.INPROGRESS.Add(card);
+                    ListCards(board);
                 }
                 else if (selection == 3)
                 {
                     board.DONE.Add(card);
+                    ListCards(board);
                 }
                 else
                 {
